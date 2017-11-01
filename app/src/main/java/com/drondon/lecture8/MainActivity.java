@@ -1,6 +1,8 @@
 package com.drondon.lecture8;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -37,9 +39,42 @@ public class MainActivity extends Activity {
             case R.id.action_about_us:
                 //Навигация в описание продукта
                 Toast.makeText(this, "About us", Toast.LENGTH_SHORT).show();
+                showAboutUsDialog();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showAboutUsDialog() {
+
+        //Сщздаем билдер
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("About us");
+        builder.setMessage("Мы супер Android разработчики!!!");
+        // builder.setCancelable(false);
+
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "Спасибо Вам!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Не очень", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "Сам ничего не можешь!!!!", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
+        //Создаем диалог
+        AlertDialog alertDialog = builder.create();
+
+        // Показываем диалог
+        alertDialog.show();
+
     }
 }
