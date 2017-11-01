@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Lecture 8</string>
+    <string name="app_setting_title">Setting</string>
+    <string name="app_about_us_title">About us</string>
 </resources>
