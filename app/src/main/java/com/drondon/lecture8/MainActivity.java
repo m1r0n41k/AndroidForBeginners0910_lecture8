@@ -2,9 +2,12 @@ package com.drondon.lecture8;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +19,23 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        showProgressDialog();
+    }
+
+    private void showProgressDialog() {
+        final ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setMessage("Подожди... Подожди...");
+        dialog.show();
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                dialog.dismiss();
+            }
+        };
+        handler.postDelayed(runnable, 5000);
+
     }
 
     @Override
